@@ -1,18 +1,24 @@
 package com.jjaques.itauVaga99.models;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.OffsetDateTime;
 
 public class Transacao {
 
-    private double valor;
+    @NotNull
+    private Double valor;
+
+    @NotNull
     private OffsetDateTime dataHora;
 
-    public Transacao(double valor, OffsetDateTime dataHora){
+    public Transacao(Double valor, OffsetDateTime dataHora){
         this.valor = valor;
         this.dataHora = dataHora;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
@@ -20,7 +26,7 @@ public class Transacao {
         return dataHora;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 

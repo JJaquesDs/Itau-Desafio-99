@@ -1,4 +1,4 @@
-package com.jjaques.itauVaga99.implementattions;
+package com.jjaques.itauVaga99.repository.implementattions;
 
 import com.jjaques.itauVaga99.models.Transacao;
 import com.jjaques.itauVaga99.repository.TransacaoRepository;
