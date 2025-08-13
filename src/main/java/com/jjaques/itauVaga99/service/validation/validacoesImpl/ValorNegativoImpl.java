@@ -1,20 +1,19 @@
 package com.jjaques.itauVaga99.service.validation.validacoesImpl;
 
+import com.jjaques.itauVaga99.exceptions.ValorNegativosException;
 import com.jjaques.itauVaga99.models.Transacao;
-import com.jjaques.itauVaga99.exceptions.FormNullException;
 import com.jjaques.itauVaga99.service.validation.Validacao;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FormNullImpl implements Validacao {
+public class ValorNegativoImpl implements Validacao {
 
     @Override
     public void validar(Transacao transacao){
 
-        //Se os formulários estiverem nulos retorna status 422
-        if (transacao.getValor() == null || transacao.getDataHora() == null){
-            throw new FormNullException();
+        // Se o formulário tiver transações com valores negativos, lança a excessão
+        if (transacao.getValor() < 0){
+            throw new ValorNegativosException();
         }
     }
-
 }
