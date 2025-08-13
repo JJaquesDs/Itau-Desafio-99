@@ -34,6 +34,11 @@ public class EstatisticaService {
         DoubleSummaryStatistics estatisticas = transacoes60Seg.stream()
                 .mapToDouble(Transacao::getValor).summaryStatistics();
 
+        //se estiver vazia, retorna todos zerados (pode refatorar)
+        if (transacoes60Seg.isEmpty()){
+            return new EstatisticaResponse(0L,0D,0D,0D,0D);
+        }
+
 
         return new EstatisticaResponse(
                 estatisticas.getCount(),
