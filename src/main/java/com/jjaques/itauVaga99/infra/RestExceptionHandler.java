@@ -1,6 +1,7 @@
 package com.jjaques.itauVaga99.infra;
 
 import com.jjaques.itauVaga99.exceptions.FormNullException;
+import com.jjaques.itauVaga99.exceptions.TempoFuturoException;
 import com.jjaques.itauVaga99.exceptions.ValorNegativosException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     // Exception de fomulário nulo
     @ExceptionHandler(FormNullException.class)
     private ResponseEntity<HttpStatus> formNullException(FormNullException exception){
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+    }
+
+    @ExceptionHandler(TempoFuturoException.class)
+    private ResponseEntity<HttpStatus> tempoFuturoException(TempoFuturoException exception){
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
     }
 }

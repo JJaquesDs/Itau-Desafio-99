@@ -1,8 +1,6 @@
 package com.jjaques.itauVaga99.models;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
 import java.time.OffsetDateTime;
 
 public class Transacao {
