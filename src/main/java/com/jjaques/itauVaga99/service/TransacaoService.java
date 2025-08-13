@@ -23,4 +23,9 @@ public class TransacaoService {
     }
 
 
+    public void deletarTransacoes(){
+        transacaoRepository.deletar();
+    }
+
+
 }

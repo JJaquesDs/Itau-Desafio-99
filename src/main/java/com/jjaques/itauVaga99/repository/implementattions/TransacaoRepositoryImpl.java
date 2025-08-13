@@ -22,4 +22,9 @@ public class TransacaoRepositoryImpl implements TransacaoRepository {
     public List<Transacao> buscarTodas(){
         return new ArrayList<>(transacoes);
     }
+
+    @Override
+    public void deletar(){
+        transacoes.clear();
+    }
 }

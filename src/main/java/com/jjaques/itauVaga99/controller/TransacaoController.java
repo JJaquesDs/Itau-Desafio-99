@@ -6,10 +6,7 @@ import com.jjaques.itauVaga99.service.TransacaoService;
 import com.jjaques.itauVaga99.service.validation.Validacao;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,5 +33,11 @@ public class TransacaoController {
         validacoes.forEach(validacao -> validacao.validar(transacao));
         transacaoService.salvarTransacao(transacao);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deletarTransacoes(){
+        transacaoService.deletarTransacoes();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

@@ -10,4 +10,6 @@ public interface TransacaoRepository {
     public void salvar(Transacao transacao);
 
     public List<Transacao> buscarTodas();
+
+    public void deletar();
 }
