@@ -15,6 +15,9 @@ public class TransacaoService {
         this.transacaoRepository = transacaoRepository;
     }
 
+    public TransacaoRepository getTransacaoRepository() {
+        return transacaoRepository;
+    }
 
     //Serviço de salvar transação
     public Transacao salvarTransacao(Transacao transacao){

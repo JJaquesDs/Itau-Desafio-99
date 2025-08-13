@@ -1,4 +1,4 @@
-package com.jjaques.itauVaga99.repository.implementattions;
+package com.jjaques.itauVaga99.repository.repositoryImpl;
 
 import com.jjaques.itauVaga99.models.Transacao;
 import com.jjaques.itauVaga99.repository.TransacaoRepository;
@@ -26,5 +26,9 @@ public class TransacaoRepositoryImpl implements TransacaoRepository {
     @Override
     public void deletar(){
         transacoes.clear();
+    }
+
+    public List<Transacao> getTransacoes() {
+        return transacoes;
     }
 }
