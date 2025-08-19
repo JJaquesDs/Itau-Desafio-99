@@ -81,4 +81,22 @@ class EstatisticaServiceTest {
         assertEquals(100, estatisticas.min());  //minimo
         assertEquals(150, estatisticas.max());
     }
+
+
+    @Test
+    void retornarZeroQuandoNaoHaNosUltimos60s(){
+
+        // cenário de teste
+        Mockito.when(transacaoRepository.getTransacoes()).thenReturn(new ArrayList<>());  //Array vazio
+
+        // Ação a testar
+        EstatisticaResponse estatisticaTeste = estatisticaService.estatisticasTransacoes();
+
+        assertEquals(0, estatisticaTeste.count());
+        assertEquals(0.0, estatisticaTeste.sum());
+        assertEquals(0.0, estatisticaTeste.avg());
+        assertEquals(0.0, estatisticaTeste.min());
+        assertEquals(0.0, estatisticaTeste.max());
+
+    }
 }
