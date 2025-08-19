@@ -6,6 +6,7 @@ import com.jjaques.itauVaga99.repository.repositoryImpl.TransacaoRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.time.OffsetDateTime;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
@@ -14,11 +15,16 @@ import java.util.List;
 public class EstatisticaService {
 
     @Autowired
-    private final TransacaoRepositoryImpl transacaoRepository;
+    private final TransacaoRepositoryImpl transacaoRepository;  // (pode ser instanciado via construtor tbm)
 
-    public EstatisticaService(TransacaoRepositoryImpl transacaoRepository) {
+    @Autowired
+    private final Clock clock;  // Spring utilizaará o @bean de config para settar o clock com SystemDefaultZone();
+
+    public EstatisticaService(TransacaoRepositoryImpl transacaoRepository, Clock clock) {
         this.transacaoRepository = transacaoRepository;
+        this.clock = clock;
     }
+
 
     public EstatisticaResponse estatisticasTransacoes(){
 
@@ -26,13 +32,15 @@ public class EstatisticaService {
          subtrai a hora atual de 60s e depois usa o tempo após esse range, obtendo os exatos últimos 60seg
          utiliza-se stream() para controlar o fluxo da lista e filtra ela com o lambda descrito
         */
-        OffsetDateTime range60Seg = OffsetDateTime.now().minusSeconds(60);
+        OffsetDateTime range60Seg = OffsetDateTime.now(clock).minusSeconds(60);
         List<Transacao> transacoes60Seg = transacaoRepository.getTransacoes().stream().filter(
                 transacao -> transacao.getDataHora().isAfter(range60Seg)
         ).toList();
 
+
         DoubleSummaryStatistics estatisticas = transacoes60Seg.stream()
                 .mapToDouble(Transacao::getValor).summaryStatistics();
+
 
         //se estiver vazia, retorna todos zerados (pode refatorar)
         if (transacoes60Seg.isEmpty()){
