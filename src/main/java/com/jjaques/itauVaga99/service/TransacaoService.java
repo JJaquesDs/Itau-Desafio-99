@@ -21,7 +21,7 @@ public class TransacaoService {
 
     //Serviço de salvar transação
     public Transacao salvarTransacao(Transacao transacao){
-        transacaoRepository.salvar(new Transacao(transacao.getValor(), transacao.getDataHora()));
+        transacaoRepository.salvar(transacao);
         return transacao;
     }
 
